@@ -25,9 +25,11 @@ Static multi-page site for [mldesignscw.com](https://mldesignscw.com). Built Jul
 ## Logo size tiers
 
 The badge ring text is unreadable below ~100px, so the site uses a tiered system:
-- **Large** (hero/about feature): full badge `logo-badge-web.png`
-- **Small** (nav, footer, favicons): `logo-monogram-96.png` / `logo-monogram.png` — the inner ML disc with a solid green ring, auto-cropped from the mark. Business name is carried by live HTML text beside it.
-- Favicons and `apple-touch-icon.png` are generated from the monogram.
+- **Large** (hero, about feature): full detailed badge `logo-badge-web.png` (truss, tools, veteran-owned star)
+- **Meet the Builder / general lockup**: `logo-lockup-web.png` (seal + horizontal wordmark)
+- **Nav, footer, favicons**: the brand **seal** `logo-seal-96.png` / `logo-seal-512.png` (ML monogram inside the "ML DESIGNS · CONSTRUCTION & WOODWORKING" ring). Business name also carried by live HTML text beside it.
+- Favicons and `apple-touch-icon.png` are generated from the seal.
+- Definitive source artwork (2026-07-24): `logo-badge.png` (color badge), `logo-seal.png` (seal), `logo-wordmark.png` (horizontal wordmark), `logo-badge-mono.png` (one-color badge). The earlier auto-cropped plain-ML `logo-monogram*.png` files remain in the repo but are no longer used.
 
 ## Brand
 
@@ -35,7 +37,7 @@ Palette sampled from the July 2026 logo package (`img/logo-badge.png` etc.):
 forest green `#213c26`, cream `#fdf6e8` (page bg `#faf5e9`), wood brown `#6d3f1e`, ink `#22271f`.
 Fonts: Bitter (display serif) + Inter (body), loaded from Google Fonts. All colors are CSS variables at the top of `style.css`.
 
-`logo-*-t.png` are transparent-background versions; `logo-mark-96/512`, `favicon-*`, `apple-touch-icon` are derived crops. Originals kept as `logo-badge.png`, `logo-mark.png`, `logo-wordmark.png`, `logo-badge-mono.png`.
+`logo-*-t.png` are transparent-background versions; `logo-seal-96/512`, `favicon-*`, `apple-touch-icon` are derived crops of the seal.
 
 ## Publishing
 
