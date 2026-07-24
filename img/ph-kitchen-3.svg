@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+<rect width="800" height="600" fill="#f1ead8"/><path d="M0 108 Q 240 94 440 114 T 800 104" stroke="#e3dac2" stroke-width="2" fill="none"/><path d="M0 204 Q 240 190 440 210 T 800 200" stroke="#e3dac2" stroke-width="2" fill="none"/><path d="M0 300 Q 240 286 440 306 T 800 296" stroke="#e3dac2" stroke-width="2" fill="none"/><path d="M0 396 Q 240 382 440 402 T 800 392" stroke="#e3dac2" stroke-width="2" fill="none"/><path d="M0 491 Q 240 477 440 497 T 800 487" stroke="#e3dac2" stroke-width="2" fill="none"/>
+<g transform="translate(400.0,300.0)" text-anchor="middle">
+<g transform="translate(0,-26)"><circle r="26" fill="#e7efe4"/>
+<g stroke="#213c26" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M-9 10 L6 -7 M6 -7 L10 -11 M-1 -9 C-1 -13 3 -15 7 -14 L11 -10 C12 -6 10 -3 6 -3 Z"/>
+</g></g>
+<text y="34" font-family="Georgia,serif" font-size="17" fill="#213c26" font-weight="bold">Kitchens &amp; Baths</text>
+<text y="56" font-family="Arial,sans-serif" font-size="12" fill="#8a8268">Project photo coming soon</text>
+</g></svg>
