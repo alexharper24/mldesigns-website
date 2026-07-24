@@ -104,7 +104,13 @@ section{padding:4.2rem 0}
 .val p{font-size:.94rem}
 
 /* CTA band */
-.cta-band{background:linear-gradient(rgba(28,16,8,.34),rgba(28,16,8,.34)),url('img/wood-grain.jpg') center/cover no-repeat,#2c1a0e;text-align:center;padding:3.9rem 0}
+.cta-band{
+  background-color:#2a1a12;
+  background-image:linear-gradient(rgba(28,16,8,.18),rgba(28,16,8,.18)),url('img/wood-grain.jpg');
+  background-repeat:no-repeat,repeat-x;
+  background-position:center,center;
+  background-size:cover,auto 100%;
+  text-align:center;padding:3.9rem 0}
 .cta-band h2{color:var(--cream);text-shadow:0 1px 4px rgba(0,0,0,.5)}
 .cta-band p{color:rgba(250,245,233,.9);max-width:56ch;margin:.7rem auto 1.6rem;text-shadow:0 1px 3px rgba(0,0,0,.45)}
 .cta-band .btn{background:var(--cream);color:var(--brown);border-color:var(--cream)}
