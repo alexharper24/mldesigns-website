@@ -102,12 +102,12 @@ section{padding:4.2rem 0}
 .val p{font-size:.94rem}
 
 /* CTA band */
-.cta-band{background:var(--green);text-align:center;padding:3.6rem 0}
-.cta-band h2{color:var(--cream)}
-.cta-band p{color:var(--green-soft);max-width:56ch;margin:.7rem auto 1.6rem}
-.cta-band .btn{background:var(--cream);color:var(--green);border-color:var(--cream)}
+.cta-band{background:linear-gradient(rgba(28,16,8,.34),rgba(28,16,8,.34)),url('img/wood-grain.jpg') center/cover no-repeat,#2c1a0e;text-align:center;padding:3.9rem 0}
+.cta-band h2{color:var(--cream);text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.cta-band p{color:rgba(250,245,233,.9);max-width:56ch;margin:.7rem auto 1.6rem;text-shadow:0 1px 3px rgba(0,0,0,.45)}
+.cta-band .btn{background:var(--cream);color:var(--brown);border-color:var(--cream)}
 @media (hover:hover){.cta-band .btn:hover{background:var(--white);transform:translateY(-2px)}}
-@media (hover:none){.cta-band .btn:hover{background:var(--cream);color:var(--green)}}
+@media (hover:none){.cta-band .btn:hover{background:var(--cream);color:var(--brown)}}
 
 /* Services page */
 .svc{scroll-margin-top:90px;padding:3.4rem 0;border-bottom:1px solid var(--cream-deep)}
