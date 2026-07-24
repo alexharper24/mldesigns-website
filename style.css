@@ -281,7 +281,8 @@ footer a{color:var(--green-soft);font-size:.95rem}
 .heroB-rule{display:flex;align-items:center;gap:1rem;justify-content:center;margin-top:2.4rem;color:var(--brown)}
 .heroB-rule::before,.heroB-rule::after{content:"";height:2px;width:min(18vw,140px);background:var(--brown)}
 .heroB-rule span{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-.workstrip{overflow:hidden;padding:0 0 1.5rem}
+.workstrip{overflow:hidden;padding:1.6rem 0;background:var(--cream);border-top:1px solid var(--cream-deep)}
+.workstrip-label{text-align:center;margin-bottom:1.1rem}
 .workstrip-track{display:flex;gap:1rem;width:max-content;animation:strip 45s linear infinite}
 .workstrip-track img{height:230px;width:auto;border-radius:var(--radius);box-shadow:var(--shadow-sm);cursor:zoom-in}
 @keyframes strip{to{transform:translateX(-50%)}}
