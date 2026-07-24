@@ -12,7 +12,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.65;font-size:1.02rem}
-img{max-width:100%;display:block}
+img{max-width:100%;display:block;height:auto}
 a{color:var(--green);text-decoration:none}
 .wrap{width:min(92%,var(--maxw));margin-inline:auto}
 h1,h2,h3{font-family:var(--serif);color:var(--green);line-height:1.2;font-weight:600}
