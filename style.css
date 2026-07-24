@@ -270,3 +270,11 @@ footer a{color:var(--green-soft);font-size:.95rem}
   .heroC-strip{grid-template-columns:1fr;margin-top:-2.5rem}
   .heroA{min-height:60vh}
 }
+
+/* Detailed badge anchoring the Option B hero */
+.heroB-badge{width:158px;height:auto;margin:0 auto 1.6rem;filter:drop-shadow(0 14px 30px rgba(34,39,31,.22))}
+@media(max-width:640px){.heroB-badge{width:128px;margin-bottom:1.2rem}}
+
+/* Horizontal lockup feature (Meet the Builder) */
+.lockup-side{display:flex;align-items:center;justify-content:center;padding:1.5rem}
+.lockup-side img{max-width:100%;width:min(440px,100%);filter:drop-shadow(0 12px 26px rgba(34,39,31,.16))}
