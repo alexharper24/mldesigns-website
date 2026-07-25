@@ -219,7 +219,8 @@ footer li{margin-bottom:.45rem}
 footer a{color:var(--green-soft);font-size:.95rem}
 @media (hover:hover){footer a:hover{color:var(--cream)}}
 /* .copy also carries .wrap, so it must opt out of the footer grid */
-.copy{display:block;border-top:1px solid rgba(250,245,233,.15);margin-top:2.4rem;padding-top:1.4rem;text-align:center;font-size:.85rem;color:var(--green-soft);line-height:1.6}
+.copy.wrap{display:block}
+.copy{border-top:1px solid rgba(250,245,233,.15);margin-top:2.4rem;padding-top:1.4rem;text-align:center;font-size:.85rem;color:var(--green-soft);line-height:1.6}
 
 /* Reveal */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
