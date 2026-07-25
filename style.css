@@ -121,15 +121,21 @@ section{padding:4.2rem 0}
 .heroPhoto{position:relative;min-height:clamp(620px,72vh,820px);display:flex;align-items:center;overflow:hidden;background:var(--cream);padding:3rem 0}
 .heroPhoto .wrap{position:relative;z-index:2;display:block}
 .heroPhoto .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0}
+/* Cream held nearly solid across the copy column, then a fast fade so the
+   room reads across the right side of the frame. */
 .heroPhoto::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(90deg,
-    rgba(250,245,233,.98) 0%,
-    rgba(250,245,233,.95) 24%,
-    rgba(250,245,233,.80) 40%,
-    rgba(250,245,233,.32) 56%,
-    rgba(250,245,233,0) 74%)}
-.heroPhoto .hero-content{max-width:620px}
-.heroPhoto h1{margin:.4rem 0 1rem;font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.05}
+    rgba(250,245,233,.97) 0%,
+    rgba(250,245,233,.96) 26%,
+    rgba(250,245,233,.88) 34%,
+    rgba(250,245,233,.45) 41%,
+    rgba(250,245,233,0) 48%)}
+.heroPhoto .hero-content{max-width:440px}
+.heroPhoto h1{margin:.4rem 0 1rem;font-size:clamp(2.2rem,3.6vw,3.2rem);line-height:1.06}
+/* light halo: insurance for the copy nearest the fade */
+.heroPhoto .hero-content .eyebrow,
+.heroPhoto .hero-content .lead,
+.heroPhoto .hero-trust span{text-shadow:0 1px 2px rgba(250,245,233,.95)}
 .hero-trust{margin-top:2rem;display:flex;align-items:center;gap:1rem;color:var(--brown)}
 .hero-trust::before{content:"";height:2px;width:48px;background:var(--brown);flex:0 0 auto}
 .hero-trust span{font-size:.8rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
