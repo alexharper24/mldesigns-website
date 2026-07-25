@@ -1,0 +1,6 @@
+# Working photo folders — kept locally, not published.
+# "our work" holds Matt's raw camera originals (~1.5 GB incl. 74 MB DNG files).
+# "selected-for-cleanup" holds the curated set staged for retouching.
+# Only the finished, web-optimised images belong in img/ and in git.
+img/our work/
+img/selected-for-cleanup/
