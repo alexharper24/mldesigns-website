@@ -107,7 +107,7 @@ section{padding:4.2rem 0}
 /* CTA band */
 .cta-band{
   background-color:#2a1a12;
-  background-image:linear-gradient(rgba(28,16,8,.18),rgba(28,16,8,.18)),url('img/wood-grain.jpg');
+  background-image:linear-gradient(rgba(28,16,8,.18),rgba(28,16,8,.18)),url('img/texture/wood-grain.jpg');
   background-repeat:no-repeat,repeat-x;
   background-position:center,center;
   background-size:cover,auto 100%;
