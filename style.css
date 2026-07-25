@@ -120,21 +120,22 @@ section{padding:4.2rem 0}
 /* Full-width photographic hero */
 .heroPhoto{position:relative;min-height:clamp(620px,72vh,820px);display:flex;align-items:center;overflow:hidden;background:var(--cream);padding:3rem 0}
 .heroPhoto .wrap{position:relative;z-index:2;display:block}
-/* Wider than the frame and anchored right, so the left wall is partly cropped
-   and the room sits in the clear part of the frame rather than under the cream. */
-.heroPhoto .hero-photo{position:absolute;top:0;right:0;bottom:0;left:auto;width:124%;max-width:none;height:100%;object-fit:cover;object-position:center;z-index:0}
+/* Photo occupies the right two thirds only; the left third is plain cream.
+   object-position pushes the crop right so the living room sits centred in it. */
+.heroPhoto .hero-photo{position:absolute;top:0;right:0;bottom:0;left:auto;width:68%;max-width:none;height:100%;object-fit:cover;object-position:92% center;z-index:0}
 /* Cream held nearly solid across the copy column, then a fast fade so the
    room reads across the right side of the frame. */
 .heroPhoto::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(90deg,
-    rgba(250,245,233,.97) 0%,
-    rgba(250,245,233,.96) 30%,
-    rgba(250,245,233,.92) 38%,
-    rgba(250,245,233,.50) 42%,
-    rgba(250,245,233,0) 47%)}
+    rgba(250,245,233,1) 0%,
+    rgba(250,245,233,1) 28%,
+    rgba(250,245,233,.92) 34%,
+    rgba(250,245,233,.62) 44%,
+    rgba(250,245,233,.26) 53%,
+    rgba(250,245,233,0) 63%)}
 .heroPhoto .hero-content{max-width:440px}
-.heroPhoto .hero-content .lead{max-width:400px}
-.heroPhoto h1{margin:.4rem 0 1rem;font-size:clamp(2.2rem,3.6vw,3.2rem);line-height:1.06}
+.heroPhoto .hero-content .lead{max-width:410px}
+.heroPhoto h1{margin:.4rem 0 1rem;font-size:clamp(2.3rem,4vw,3.6rem);line-height:1.06}
 /* light halo: insurance for the copy nearest the fade */
 .heroPhoto .hero-content .eyebrow,
 .heroPhoto .hero-content .lead,
