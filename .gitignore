@@ -4,3 +4,6 @@
 # Only the finished, web-optimised images belong in img/ and in git.
 img/our work/
 img/selected-for-cleanup/
+
+# Logo recolour explorations — not wired into the site
+logo-variations/

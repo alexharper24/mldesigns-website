@@ -124,9 +124,9 @@ section{padding:4.2rem 0}
    pushes the crop right so the living room sits centred in the image area.
    The photo's own left edge is feathered with a mask, so there is no hard seam
    and no need for an overlay veiling the room. */
-.heroPhoto .hero-photo{position:absolute;top:0;right:0;bottom:0;left:auto;width:64%;max-width:none;height:100%;object-fit:cover;object-position:92% center;z-index:0;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0%,transparent 4%,rgba(0,0,0,.35) 16%,#000 34%);
-  mask-image:linear-gradient(90deg,transparent 0%,transparent 4%,rgba(0,0,0,.35) 16%,#000 34%)}
+.heroPhoto .hero-photo{position:absolute;top:0;right:0;bottom:0;left:auto;width:58%;max-width:none;height:100%;object-fit:cover;object-position:100% center;z-index:0;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.30) 10%,#000 22%);
+  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.30) 10%,#000 22%)}
 /* No cream overlay needed on desktop: the mask does the blending. */
 .heroPhoto::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:none}
 .heroPhoto .hero-content{max-width:440px}
