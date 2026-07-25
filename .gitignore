@@ -3,7 +3,5 @@
 # "selected-for-cleanup" holds the curated set staged for retouching.
 # Only the finished, web-optimised images belong in img/ and in git.
 img/our work/
+img/original work/
 img/selected-for-cleanup/
-
-# Logo recolour explorations — not wired into the site
-logo-variations/

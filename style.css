@@ -43,7 +43,8 @@ section{padding:4.2rem 0}
 .nav{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:1px solid var(--cream-deep)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:.65rem 0;gap:1rem}
 .brand{display:flex;align-items:center;gap:.7rem}
-.brand .mark{width:46px;height:46px}
+/* line-art mark is lighter than the old badge, so it runs a little larger */
+.brand .mark{width:auto;height:54px}
 .brand .name{font-family:var(--serif);font-weight:700;font-size:1.18rem;color:var(--green);line-height:1.15;display:flex;flex-direction:column}
 .brand .name span{font-family:var(--sans);font-weight:600;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--brown)}
 .nav-links{display:flex;align-items:center;gap:1.7rem}
@@ -212,7 +213,7 @@ section{padding:4.2rem 0}
 footer{background:var(--green);color:var(--green-soft);padding:3rem 0 2rem;margin-top:0}
 footer .wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:2.5rem}
 footer .fbrand{display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem}
-footer .fbrand img{width:52px;height:52px}
+footer .fbrand img{width:auto;height:58px}
 footer .fbrand b{font-family:var(--serif);color:var(--cream);font-size:1.15rem;line-height:1.2;display:block}
 footer .fbrand span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brown-soft)}
 footer p{color:var(--green-soft);font-size:.92rem}
