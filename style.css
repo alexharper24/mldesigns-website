@@ -159,12 +159,14 @@ section{padding:4.2rem 0}
 /* Services page */
 .svc{scroll-margin-top:90px;padding:3.4rem 0;border-bottom:1px solid var(--cream-deep)}
 .svc:last-of-type{border-bottom:0}
-.svc .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+/* equal columns: flipped sections put the photo first, so uneven columns made
+   its width (and therefore height) differ section to section */
+.svc .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
 .svc.flip .wrap>.photo{order:-1}
 .svc .photo{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
 /* source photos run 0.67 to 1.33 aspect, so pin them all to one shape:
    consistent section to section, and close to the height of the copy beside it */
-.svc .photo img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center}
+.svc .photo img{width:100%;aspect-ratio:3/2;object-fit:cover;object-position:center}
 .svc ul{list-style:none;margin-top:1rem}
 .svc li{padding-left:1.5rem;position:relative;color:var(--ink-soft);margin-bottom:.45rem;font-size:.98rem}
 .svc li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--brown)}
