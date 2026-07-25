@@ -122,7 +122,7 @@ section{padding:4.2rem 0}
 .heroPhoto .wrap{position:relative;z-index:2;display:block}
 /* Wider than the frame and anchored right, so the left wall is partly cropped
    and the room sits in the clear part of the frame rather than under the cream. */
-.heroPhoto .hero-photo{position:absolute;top:0;right:0;bottom:0;left:auto;width:124%;height:100%;object-fit:cover;object-position:center;z-index:0}
+.heroPhoto .hero-photo{position:absolute;top:0;right:0;bottom:0;left:auto;width:124%;max-width:none;height:100%;object-fit:cover;object-position:center;z-index:0}
 /* Cream held nearly solid across the copy column, then a fast fade so the
    room reads across the right side of the frame. */
 .heroPhoto::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
