@@ -163,8 +163,8 @@ section{padding:4.2rem 0}
 .svc li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--brown)}
 
 /* Gallery */
-.filters{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.8rem 0 2rem}
-.filters button{font-family:var(--sans);font-weight:600;font-size:.92rem;padding:.55rem 1.2rem;border-radius:999px;border:1.5px solid var(--green);background:transparent;color:var(--green);cursor:pointer;transition:background .2s,color .2s}
+.filters{display:flex;flex-wrap:wrap;gap:.55rem;margin:1.8rem 0 2rem}
+.filters button{font-family:var(--sans);font-weight:600;font-size:.9rem;padding:.5rem 1.05rem;border-radius:999px;border:1.5px solid var(--green);background:transparent;color:var(--green);cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
 .filters button.active{background:var(--green);color:var(--cream)}
 @media (hover:hover){.filters button:hover{background:var(--green);color:var(--cream)}}
 .gallery{columns:3;column-gap:1rem}
@@ -218,7 +218,8 @@ footer ul{list-style:none}
 footer li{margin-bottom:.45rem}
 footer a{color:var(--green-soft);font-size:.95rem}
 @media (hover:hover){footer a:hover{color:var(--cream)}}
-.copy{border-top:1px solid rgba(250,245,233,.15);margin-top:2.4rem;padding-top:1.4rem;text-align:center;font-size:.85rem;color:var(--green-soft)}
+/* .copy also carries .wrap, so it must opt out of the footer grid */
+.copy{display:block;border-top:1px solid rgba(250,245,233,.15);margin-top:2.4rem;padding-top:1.4rem;text-align:center;font-size:.85rem;color:var(--green-soft);line-height:1.6}
 
 /* Reveal */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
