@@ -288,6 +288,9 @@ footer a{color:var(--green-soft);font-size:.95rem}
   footer .wrap{grid-template-columns:1fr}
   /* gallery filter chips were 35px tall - too small for a thumb */
   .filters button{padding:.72rem 1.15rem}
+  /* footer sitemap links sat 19px tall with 7px between them - easy to mis-tap */
+  footer li{margin-bottom:0}
+  footer li a{display:inline-block;padding:.55rem 0}
 }
 
 /* ===== Hero variants (previews) ===== */
