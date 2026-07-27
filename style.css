@@ -121,11 +121,14 @@ section{padding:4.2rem 0}
 /* Full-width photographic hero */
 .heroPhoto{position:relative;min-height:clamp(620px,72vh,820px);display:flex;align-items:center;overflow:hidden;background:var(--cream);padding:3rem 0}
 .heroPhoto .wrap{position:relative;z-index:2;display:block}
-/* Photo occupies the right ~2/3; the left third is plain cream. object-position
-   pushes the crop right so the living room sits centred in the image area.
-   The photo's own left edge is feathered with a mask, so there is no hard seam
-   and no need for an overlay veiling the room. */
-.heroPhoto .hero-photo{position:absolute;top:0;right:0;bottom:0;left:auto;width:58%;max-width:none;height:100%;object-fit:cover;object-position:100% center;z-index:0;
+/* The photo is tied to the same centred content band as every other section
+   (rather than bleeding off the right edge), so the hero composition sits
+   centred on the page: equal cream margins left and right.
+   object-position pushes the crop right so the living room centres in the image
+   area, and the photo's own left edge is feathered with a mask, so there is no
+   hard seam and no overlay veiling the room. */
+.heroPhoto{--band:min(92%,var(--maxw));--band-gutter:calc((100% - var(--band))/2)}
+.heroPhoto .hero-photo{position:absolute;top:0;right:var(--band-gutter);bottom:0;left:auto;width:calc(var(--band)*.58);max-width:none;height:100%;object-fit:cover;object-position:100% center;z-index:0;
   -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.30) 10%,#000 22%);
   mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.30) 10%,#000 22%)}
 /* No cream overlay needed on desktop: the mask does the blending. */
