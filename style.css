@@ -1,5 +1,7 @@
 /* ML Designs Construction & Woodworking — brand palette from logo package */
 :root{
+  /* iOS Safari inverts pages that do not declare a scheme. */
+  color-scheme: light only !important;
   --green:#213c26; --green-mid:#2f5236; --green-soft:#dfe8dd; --green-mist:#eef3ea;
   --cream:#faf5e9; --cream-deep:#f1ead8; --white:#fff;
   --brown:#6d3f1e; --brown-soft:#a9743f;
