@@ -123,27 +123,22 @@ section{padding:4.2rem 0}
 /* Full-width photographic hero */
 .heroPhoto{position:relative;min-height:clamp(620px,72vh,820px);display:flex;align-items:center;overflow:hidden;background:var(--cream);padding:3rem 0}
 .heroPhoto .wrap{position:relative;z-index:2;display:block}
-/* Photo bleeds to the right edge and runs wide (76%) so the room reads centred
-   rather than crammed against the right. Its own left edge is feathered with a
-   mask so there is no hard seam. The source file is pre-cropped on the left,
-   which is what actually moves the room toward the middle - at these widths the
-   box is wider than the image ratio, so object-position has no slack to work
-   with. */
-.heroPhoto .hero-photo{position:absolute;top:0;right:0;bottom:0;left:auto;width:76%;max-width:none;height:100%;object-fit:cover;object-position:100% center;z-index:0;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.30) 10%,#000 24%);
-  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.30) 10%,#000 24%)}
-/* Long cream fade on the left. The photo runs wide enough to sit under the copy,
-   so this both gives the soft left-hand fade and keeps the text readable: the
-   copy sits in the page's standard band and reaches ~42% at wide viewports, so
-   the cream stays solid to 44% (paragraph measures 5.8:1, was 2.3:1 untreated).
-   Clear again by 70%, well before the room. */
+/* The photo now spans the full width; the cream gradient below does all the
+   blending, so no mask is needed on the image itself. */
+.heroPhoto .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0}
+/* Cream fades INTO the photo on the left and back OUT on the right.
+   It stays solid to 13% (just left of the copy column), eases off behind the
+   copy, is fully clear of the image from 62% to 88%, then returns at the right
+   edge. Holding .88 across the copy keeps the paragraph at 10:1 - the hero
+   paragraph is darkened to --ink to buy that headroom. */
 .heroPhoto::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(90deg,
     rgba(250,245,233,1) 0%,
-    rgba(250,245,233,1) 44%,
-    rgba(250,245,233,.55) 54%,
-    rgba(250,245,233,.18) 62%,
-    rgba(250,245,233,0) 70%)}
+    rgba(250,245,233,1) 13%,
+    rgba(250,245,233,.88) 42%,
+    rgba(250,245,233,0) 62%,
+    rgba(250,245,233,0) 88%,
+    rgba(250,245,233,.85) 100%)}
 /* Dissolve the photo's top and bottom edges into the cream so it melts into the
    nav banner above and the strip below instead of ending on a hard line. */
 .heroPhoto::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -153,7 +148,8 @@ section{padding:4.2rem 0}
     rgba(250,245,233,0) 85%,
     var(--cream) 100%)}
 .heroPhoto .hero-content{max-width:440px}
-.heroPhoto .hero-content .lead{max-width:410px}
+/* darker than the site's body copy: the photo shows through behind it here */
+.heroPhoto .hero-content .lead{max-width:410px;color:var(--ink)}
 .heroPhoto h1{margin:.4rem 0 1rem;font-size:clamp(2.3rem,4vw,3.6rem);line-height:1.06}
 /* the text can wrap to two lines, so pin the rule to the first line rather than
    letting it float centred against the whole block */
@@ -162,10 +158,10 @@ section{padding:4.2rem 0}
 .hero-trust span{font-size:.8rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
 /* the hero copy uses the site's standard content band, so it lines up with the
    nav logo and every other section */
-/* Below ~1265px the copy needs a stronger wash than the desktop one above.
+/* Below ~1150px the copy reaches too far across for the gradient above.
    Runs wider than the 960px breakpoint on purpose: below this the copy sits over
    an opaque part of the photo and the lighter desktop wash is not enough. */
-@media(max-width:1265px){
+@media(max-width:1150px){
   .heroPhoto::before{background:linear-gradient(90deg,
     rgba(250,245,233,1) 0%,
     rgba(250,245,233,1) 56%,
