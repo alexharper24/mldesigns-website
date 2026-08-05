@@ -132,16 +132,18 @@ section{padding:4.2rem 0}
 .heroPhoto .hero-photo{position:absolute;top:0;right:0;bottom:0;left:auto;width:76%;max-width:none;height:100%;object-fit:cover;object-position:100% center;z-index:0;
   -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.30) 10%,#000 24%);
   mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.30) 10%,#000 24%)}
-/* Long cream fade on the left. The photo now runs wide enough to sit under the
-   copy, so this both protects the text (paragraph measures 5:1 at 2000px) and
-   gives the soft left-hand fade into cream. Clear of the room by 60%. */
+/* Long cream fade on the left. The photo runs wide enough to sit under the copy,
+   so this both gives the soft left-hand fade and keeps the text readable: the
+   copy sits in the page's standard band and reaches ~42% at wide viewports, so
+   the cream stays solid to 44% (paragraph measures 5.8:1, was 2.3:1 untreated).
+   Clear again by 70%, well before the room. */
 .heroPhoto::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(90deg,
     rgba(250,245,233,1) 0%,
-    rgba(250,245,233,1) 34%,
-    rgba(250,245,233,.55) 44%,
-    rgba(250,245,233,.18) 52%,
-    rgba(250,245,233,0) 60%)}
+    rgba(250,245,233,1) 44%,
+    rgba(250,245,233,.55) 54%,
+    rgba(250,245,233,.18) 62%,
+    rgba(250,245,233,0) 70%)}
 /* Dissolve the photo's top and bottom edges into the cream so it melts into the
    nav banner above and the strip below instead of ending on a hard line. */
 .heroPhoto::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -158,11 +160,8 @@ section{padding:4.2rem 0}
 .hero-trust{margin-top:2rem;display:flex;align-items:flex-start;gap:1rem;color:var(--brown)}
 .hero-trust::before{content:"";height:2px;width:48px;background:var(--brown);flex:0 0 auto;margin-top:.6rem}
 .hero-trust span{font-size:.8rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
-/* desktop only: the hero copy sits further left than other sections so the
-   composition is balanced against the full-bleed photo */
-@media(min-width:961px){
-  .heroPhoto .wrap{width:min(94%,1400px)}
-}
+/* the hero copy uses the site's standard content band, so it lines up with the
+   nav logo and every other section */
 /* Below ~1265px the copy needs a stronger wash than the desktop one above.
    Runs wider than the 960px breakpoint on purpose: below this the copy sits over
    an opaque part of the photo and the lighter desktop wash is not enough. */
