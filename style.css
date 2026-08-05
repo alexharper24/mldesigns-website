@@ -123,9 +123,16 @@ section{padding:4.2rem 0}
 /* Two-column hero: copy left, photo right as a rounded card. No fades - the
    photo has clean edges and sits inside the normal content band, so everything
    lines up with the nav and the sections below. */
-.heroPhoto{position:relative;background:var(--cream);padding:4.6rem 0 4.2rem}
-.heroPhoto .wrap{display:grid;grid-template-columns:.88fr 1.12fr;gap:3.4rem;align-items:center}
-.heroPhoto .hero-photo{width:100%;height:auto;aspect-ratio:7/5;object-fit:cover;object-position:center;
+.heroPhoto{position:relative;background:var(--cream);padding:4.4rem 0 4rem}
+/* The copy column still starts on the site's content band (the padding-left
+   expression resolves to exactly the band's gutter), but the photo column runs
+   on toward the right edge so the image can be properly large on wide screens
+   instead of being boxed in at 1180px. */
+.heroPhoto .wrap{width:100%;max-width:none;margin:0;
+  padding-left:max(4%,calc((100% - var(--maxw))/2));
+  padding-right:clamp(1.5rem,3vw,3rem);
+  display:grid;grid-template-columns:minmax(0,460px) 1fr;gap:clamp(2rem,3.5vw,3.6rem);align-items:center}
+.heroPhoto .hero-photo{width:100%;height:clamp(430px,40vw,620px);object-fit:cover;object-position:center;
   border-radius:var(--radius);box-shadow:var(--shadow-sm)}
 .heroPhoto .hero-content{max-width:460px}
 .heroPhoto .hero-content .lead{max-width:430px}
@@ -135,20 +142,24 @@ section{padding:4.2rem 0}
 .hero-trust{margin-top:2rem;display:flex;align-items:flex-start;gap:1rem;color:var(--brown)}
 .hero-trust::before{content:"";height:2px;width:48px;background:var(--brown);flex:0 0 auto;margin-top:.6rem}
 .hero-trust span{font-size:.8rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+/* "In-House Wood Shop" must not split - the hyphen is a break opportunity too,
+   so nowrap rather than non-breaking spaces */
+.hero-trust .nb{white-space:nowrap}
 /* the hero copy uses the site's standard content band, so it lines up with the
    nav logo and every other section */
 @media(max-width:960px){
-  /* stack: copy above, photo below, both full width of the band */
+  /* stack: copy above, photo below, both back inside the normal band */
   .heroPhoto{padding:3.2rem 0 3.4rem}
-  .heroPhoto .wrap{grid-template-columns:1fr;gap:2.4rem}
+  .heroPhoto .wrap{width:min(92%,var(--maxw));margin-inline:auto;
+    padding-left:0;padding-right:0;grid-template-columns:1fr;gap:2.4rem}
   .heroPhoto .hero-content{max-width:none}
   .heroPhoto .hero-content .lead{max-width:60ch}
-  .heroPhoto .hero-photo{aspect-ratio:16/10}
+  .heroPhoto .hero-photo{height:auto;aspect-ratio:16/10}
 }
 @media(max-width:640px){
   .heroPhoto{padding:2.4rem 0 2.8rem}
   .heroPhoto .wrap{gap:1.9rem}
-  .heroPhoto .hero-photo{aspect-ratio:4/3}
+  .heroPhoto .hero-photo{height:auto;aspect-ratio:4/3}
   .hero-ctas .btn{flex:1 1 auto}
 }
 
