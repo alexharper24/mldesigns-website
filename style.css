@@ -353,3 +353,15 @@ footer a{color:var(--green-soft);font-size:.95rem}
 /* Horizontal lockup feature (Meet the Builder) */
 .lockup-side{display:flex;align-items:center;justify-content:center;padding:1.5rem}
 .lockup-side img{max-width:100%;width:min(440px,100%);filter:drop-shadow(0 12px 26px rgba(34,39,31,.16))}
+
+
+/* --------------------------------------------------------------------------
+   Footer link tap targets (added 2026-08-06 after a rendered audit).
+   Footer links measured 17-36px tall against the 44px minimum that both Apple
+   and Google publish, so a fingertip overlapped the neighbouring link. Padding
+   only: the text size is unchanged, and this is scoped to phones so desktop
+   footer density stays exactly as it was.
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  footer .wrap a { padding-top: 11px; padding-bottom: 11px; }
+}
