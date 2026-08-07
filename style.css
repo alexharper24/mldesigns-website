@@ -235,9 +235,9 @@ footer .wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:2.5rem}
 footer .fbrand{display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem}
 footer .fbrand img{width:auto;height:58px}
 footer .fbrand b{font-family:var(--serif);color:var(--cream);font-size:1.15rem;line-height:1.2;display:block}
-footer .fbrand span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brown-soft)}
+footer .fbrand span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#be976f}
 footer p{color:var(--green-soft);font-size:.92rem}
-footer h4{font-family:var(--serif);color:var(--cream);margin-bottom:.8rem;font-size:1.05rem}
+footer h3, footer h4{font-family:var(--serif);color:var(--cream);margin-bottom:.8rem;font-size:1.05rem}
 footer ul{list-style:none}
 footer li{margin-bottom:.45rem}
 footer a{color:var(--green-soft);font-size:.95rem}
