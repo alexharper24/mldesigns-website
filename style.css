@@ -107,15 +107,21 @@ section{padding:4.2rem 0}
 
 /* Value cards & icons */
 /* Once the white cards went, this section had no edges and ran straight into
-   the ones above and below it. A full-bleed tint gives it a clear boundary.
-   Green mist rather than cream deep: the tan sits so close to the page that it
-   read as muddy, where the cooler tone registers as a deliberate band. */
-.band-soft{background:var(--green-mist);padding-block:3.8rem}
+   the ones above and below it. It now takes the footer's green, so the page
+   has one dark tone rather than a second, lighter one invented for it.
+   Everything inside has to invert: the footer's own pairings are reused so the
+   two blocks read as the same material. */
+.band-soft{background:var(--green);padding-block:3.8rem}
+.band-soft .eyebrow{color:#c9a37c}
+.band-soft h2{color:var(--cream)}
+.band-soft .val h3{color:var(--cream)}
+.band-soft .val p{color:var(--green-soft)}
+.band-soft .val .icon-tile{color:#c9a37c}
 .vals{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:2.2rem}
 /* Columns separated by a hairline rather than boxed as cards, so the four read
    as one row of promises. The icon sits plain, at the weight of the rules
    around it, instead of in a filled tile. */
-.val{padding:0 1.6rem;border-left:1px solid #dbe4d5}
+.val{padding:0 1.6rem;border-left:1px solid rgba(250,245,233,.2)}
 .val:first-child{padding-left:0;border-left:0}
 .val .icon-tile{width:26px;height:26px;border-radius:0;background:none;
   color:var(--brown);margin-bottom:.85rem}
