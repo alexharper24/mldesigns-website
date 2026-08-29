@@ -132,13 +132,11 @@ section{padding:4.2rem 0}
    on toward the right edge so the image can be properly large on wide screens
    instead of being boxed in at 1180px. */
 .heroPhoto .wrap{width:100%;max-width:none;margin:0;
-  padding-left:max(4%,calc((100% - var(--maxw))/2));
-  padding-right:0;
+  padding-left:max(3%,calc((100% - var(--maxw))/2));
+  padding-right:max(3%,calc((100% - var(--maxw))/2));
   display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:clamp(1.25rem,1.6vw,1.6rem);align-items:center}
 .heroPhoto .hero-photo{width:100%;height:clamp(430px,40vw,620px);object-fit:cover;object-position:center;
-  /* square on the right now that it meets the viewport edge; a rounded corner
-     hard against the screen edge reads as a mistake */
-  border-radius:var(--radius) 0 0 var(--radius);box-shadow:var(--shadow-sm);
+  border-radius:var(--radius);box-shadow:var(--shadow-sm);
   /* short fade on the left edge only, so that side melts into the cream while
      the other three keep the clean rounded card edge. Masks the shadow too. */
   -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.55) 5%,#000 12%);
@@ -250,8 +248,8 @@ section{padding:4.2rem 0}
 
 /* Footer */
 footer{background:var(--green);color:var(--green-soft);padding:3rem 0 2rem;margin-top:0}
-footer .wrap{display:grid;grid-template-columns:minmax(0,430px) auto auto;
-  justify-content:start;column-gap:clamp(3rem,5vw,5.5rem);row-gap:2.5rem}
+footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto auto;
+  column-gap:clamp(3rem,5vw,5.5rem);row-gap:2.5rem}
 footer .fbrand{display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem}
 footer .fbrand img{width:auto;height:58px}
 footer .fbrand b{font-family:var(--serif);color:var(--cream);font-size:1.15rem;line-height:1.2;display:block}
