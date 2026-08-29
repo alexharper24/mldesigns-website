@@ -106,8 +106,15 @@ section{padding:4.2rem 0}
 .badge-side img{width:100%;max-width:340px;height:auto;margin-inline:auto}
 
 /* Value cards & icons */
-.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.3rem;margin-top:2.2rem}
-.val{background:var(--white);border:1px solid var(--cream-deep);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow-sm)}
+.vals{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:2.2rem}
+/* Columns separated by a hairline rather than boxed as cards, so the four read
+   as one row of promises. The icon sits plain, at the weight of the rules
+   around it, instead of in a filled tile. */
+.val{padding:0 1.6rem;border-left:1px solid var(--cream-deep)}
+.val:first-child{padding-left:0;border-left:0}
+.val .icon-tile{width:26px;height:26px;border-radius:0;background:none;
+  color:var(--brown);margin-bottom:.85rem}
+.val .icon-tile svg{width:26px;height:26px;stroke-width:1.7}
 .icon-tile{width:46px;height:46px;border-radius:12px;background:var(--green-mist);color:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:.9rem}
 .icon-tile svg{width:24px;height:24px}
 .val h3{margin-bottom:.4rem}
@@ -257,9 +264,16 @@ section{padding:4.2rem 0}
 .c-row span{font-size:.92rem;color:var(--ink-soft)}
 /* the Instagram row is a link: give it a real touch target */
 .c-row a{font-size:.92rem;color:var(--ink-soft);display:inline-flex;align-items:center;min-height:44px}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2.2rem}
-.step{text-align:center;padding:0 .4rem}
-.step .num{width:44px;height:44px;border-radius:50%;background:var(--green);color:var(--cream);font-family:var(--serif);font-weight:700;font-size:1.15rem;display:flex;align-items:center;justify-content:center;margin:0 auto .8rem}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.2rem;position:relative}
+/* the rail: one hairline across the whole row, ticked by each node */
+.steps::before{content:"";position:absolute;left:0;right:0;top:13px;height:1.5px;
+  background:var(--brown-soft);opacity:.45}
+.step{text-align:left;padding:2.6rem 0 0;position:relative}
+/* the cream ring is what opens a gap in the rail behind each node */
+.step .num{position:absolute;top:0;left:0;width:27px;height:27px;border-radius:50%;
+  background:var(--green);color:var(--cream);font-family:var(--serif);font-weight:700;
+  font-size:.78rem;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 5px var(--cream)}
 .step b{display:block;font-size:.98rem;margin-bottom:.25rem}
 .step p{font-size:.88rem}
 
@@ -301,7 +315,13 @@ footer a{color:var(--green-soft);font-size:.95rem}
   .copy a{display:inline-flex;align-items:center;min-height:44px}
   .feat{grid-template-columns:1fr 1fr}
   .gallery{columns:2}
-  .steps{grid-template-columns:repeat(2,1fr);row-gap:1.8rem}
+  /* the rail rotates rather than disappearing, so the ordering survives */
+  .steps{grid-template-columns:1fr;gap:0;padding-left:2.4rem}
+  .steps::before{left:13px;right:auto;top:8px;bottom:8px;width:1.5px;height:auto}
+  .step{padding:0 0 1.4rem}
+  .step .num{left:-2.4rem;top:0}
+  .vals{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem}
+  .val{padding:0;border-left:0}
   footer .wrap{grid-template-columns:1fr 1fr}
 }
 @media(max-width:860px){
