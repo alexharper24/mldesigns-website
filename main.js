@@ -45,6 +45,58 @@ if (revs.length) {
   }
 }
 
+// Recent Work strip, phone and tablet.
+// Desktop runs a CSS marquee and pauses it on hover. Neither works on a touch
+// screen, so below 960 the container is a real scroller and this advances
+// scrollLeft by hand: it keeps moving on its own, but a thumb can grab it,
+// and it gets out of the way while you are actually touching it.
+const strip = document.querySelector('.workstrip');
+const stripTrack = strip && strip.querySelector('.workstrip-track');
+const stripMQ = matchMedia('(max-width:960px)');
+if (strip && stripTrack && stripMQ.matches) {
+  const reduced = matchMedia('(prefers-reduced-motion:reduce)');
+  const SPEED = 38;              // px per second, close to the desktop marquee
+  const RESUME_AFTER = 2200;     // let go, read for a moment, then it drifts on
+
+  let last = 0, paused = false, held = false, resumeAt = 0, onScreen = true;
+  // The track is the ten photos twice over, so one run ends where the eleventh
+  // begins. Measured off the images rather than halving scrollWidth, because
+  // the container's own padding is in that number and left the reset 3px short,
+  // which is a small visible jump on every lap.
+  const shots = stripTrack.querySelectorAll('img');
+  const runWidth = () => (shots.length > 10 ? shots[10].offsetLeft - shots[0].offsetLeft : 0);
+
+  const tick = (now) => {
+    const dt = last ? (now - last) / 1000 : 0;
+    last = now;
+    if (!stripMQ.matches) { strip.scrollLeft = 0; requestAnimationFrame(tick); return; }
+    if (!paused && !held && onScreen && !reduced.matches && dt > 0 && dt < 0.5) {
+      strip.scrollLeft += SPEED * dt;
+      // hand back to the start of the first run before the second one ends,
+      // which is invisible because the two runs are identical
+      if (strip.scrollLeft >= runWidth()) strip.scrollLeft -= runWidth();
+    }
+    if (resumeAt && now >= resumeAt) { held = false; resumeAt = 0; }
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+
+  const hold = () => { held = true; resumeAt = 0; };
+  const release = () => { resumeAt = performance.now() + RESUME_AFTER; };
+  strip.addEventListener('touchstart', hold, {passive: true});
+  strip.addEventListener('touchend', release, {passive: true});
+  strip.addEventListener('touchcancel', release, {passive: true});
+  // a trackpad or mouse wheel on a narrow window counts as grabbing it too
+  strip.addEventListener('wheel', () => { hold(); release(); }, {passive: true});
+
+  // no reason to burn battery scrolling something nobody is looking at
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(es => { onScreen = es[0].isIntersecting; },
+                             {threshold: 0}).observe(strip);
+  }
+  document.addEventListener('visibilitychange', () => { paused = document.hidden; });
+}
+
 // Gallery filters
 const filterBtns = document.querySelectorAll('.filters button');
 if (filterBtns.length) {

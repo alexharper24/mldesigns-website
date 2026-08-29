@@ -372,20 +372,19 @@ footer a{color:var(--green-soft);font-size:.95rem}
 @keyframes strip{to{transform:translateX(-50%)}}
 @media (hover:hover){.workstrip:hover .workstrip-track{animation-play-state:paused}}
 @media (prefers-reduced-motion:reduce){.workstrip-track{animation:none;flex-wrap:wrap;width:auto}}
-/* The strip auto-scrolls on a pointer device, where hovering pauses it. A
-   phone can do neither: overflow:hidden blocks the swipe, the pause rule is
-   behind (hover:hover), and every photo is a moving tap target. Below 960 it
-   becomes an ordinary swipeable rail instead. */
+/* Desktop drives this with a CSS marquee and pauses it on hover. A phone can do
+   neither: overflow:hidden blocks the swipe and the pause rule sits behind
+   (hover:hover), so the strip both moved on its own and could not be touched.
+   Below 960 the container becomes a real scroller and main.js advances
+   scrollLeft instead, which keeps the motion while letting a thumb grab it.
+   The duplicate run of photos stays, because the loop needs it. */
 @media(max-width:960px){
   .workstrip{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
-    scroll-snap-type:x proximity;scrollbar-width:none;
-    padding-inline:max(3%,calc((100% - var(--maxw))/2))}
+    scrollbar-width:none;padding-inline:max(3%,calc((100% - var(--maxw))/2))}
   .workstrip::-webkit-scrollbar{display:none}
+  /* the CSS animation would fight the scrollLeft the script is setting */
   .workstrip-track{animation:none;width:max-content}
-  .workstrip-track img{height:190px;scroll-snap-align:start;cursor:pointer}
-  /* the second run of photos only exists to make the desktop loop seamless;
-     swiping through the same ten twice just looks like a mistake */
-  .workstrip-track img[alt=""]{display:none}
+  .workstrip-track img{height:190px;cursor:pointer}
   .workstrip-label{padding-inline:0}
 }
 
