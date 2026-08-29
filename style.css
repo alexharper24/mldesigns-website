@@ -106,11 +106,15 @@ section{padding:4.2rem 0}
 .badge-side img{width:100%;max-width:340px;height:auto;margin-inline:auto}
 
 /* Value cards & icons */
+/* Once the white cards went, this section had no edges and ran straight into
+   the ones above and below it. A tint gives it a boundary without another
+   dark block. */
+.band-soft{background:var(--cream-deep)}
 .vals{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:2.2rem}
 /* Columns separated by a hairline rather than boxed as cards, so the four read
    as one row of promises. The icon sits plain, at the weight of the rules
    around it, instead of in a filled tile. */
-.val{padding:0 1.6rem;border-left:1px solid var(--cream-deep)}
+.val{padding:0 1.6rem;border-left:1px solid #e2d7bd}
 .val:first-child{padding-left:0;border-left:0}
 .val .icon-tile{width:26px;height:26px;border-radius:0;background:none;
   color:var(--brown);margin-bottom:.85rem}
@@ -264,7 +268,8 @@ section{padding:4.2rem 0}
 .c-row span{font-size:.92rem;color:var(--ink-soft)}
 /* the Instagram row is a link: give it a real touch target */
 .c-row a{font-size:.92rem;color:var(--ink-soft);display:inline-flex;align-items:center;min-height:44px}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.2rem;position:relative}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.2rem;
+  position:relative;max-width:1180px;margin-inline:auto}
 /* the rail: one hairline across the whole row, ticked by each node */
 .steps::before{content:"";position:absolute;left:0;right:0;top:13px;height:1.5px;
   background:var(--brown-soft);opacity:.45}
