@@ -50,7 +50,7 @@ if (revs.length) {
 // screen, so below 960 the container is a real scroller and this advances
 // scrollLeft by hand: it keeps moving on its own, but a thumb can grab it,
 // and it gets out of the way while you are actually touching it.
-const strip = document.querySelector('.workstrip');
+const strip = document.querySelector('.workstrip-scroller');
 const stripTrack = strip && strip.querySelector('.workstrip-track');
 const stripMQ = matchMedia('(max-width:960px)');
 if (strip && stripTrack && stripMQ.matches) {

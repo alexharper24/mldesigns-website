@@ -366,12 +366,15 @@ footer a{color:var(--green-soft);font-size:.95rem}
 .heroB-rule{display:flex;align-items:center;gap:1rem;justify-content:center;margin-top:2.4rem;color:var(--brown)}
 .heroB-rule::before,.heroB-rule::after{content:"";height:2px;width:min(18vw,140px);background:var(--brown)}
 .heroB-rule span{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-.workstrip{overflow:hidden;padding:1.6rem 0;background:var(--cream);border-top:1px solid var(--cream-deep)}
+.workstrip{padding:1.6rem 0;background:var(--cream);border-top:1px solid var(--cream-deep)}
+/* only the photos scroll; the Recent Work label is a sibling and stays put */
+.workstrip-scroller{overflow:hidden}
 .workstrip-label{text-align:center;margin-bottom:1.1rem}
 .workstrip-track{display:flex;gap:1rem;width:max-content;animation:strip 45s linear infinite}
 .workstrip-track img{height:230px;width:auto;border-radius:var(--radius);box-shadow:var(--shadow-sm);cursor:zoom-in}
 @keyframes strip{to{transform:translateX(-50%)}}
 @media (hover:hover){.workstrip:hover .workstrip-track{animation-play-state:paused}}
+@media print{.workstrip-scroller{overflow:visible}}
 @media (prefers-reduced-motion:reduce){.workstrip-track{animation:none;flex-wrap:wrap;width:auto}}
 /* Desktop drives this with a CSS marquee and pauses it on hover. A phone can do
    neither: overflow:hidden blocks the swipe and the pause rule sits behind
@@ -380,9 +383,9 @@ footer a{color:var(--green-soft);font-size:.95rem}
    scrollLeft instead, which keeps the motion while letting a thumb grab it.
    The duplicate run of photos stays, because the loop needs it. */
 @media(max-width:960px){
-  .workstrip{overflow-x:auto;overflow-y:hidden;
+  .workstrip-scroller{overflow-x:auto;overflow-y:hidden;
     scrollbar-width:none;padding-inline:max(3%,calc((100% - var(--maxw))/2))}
-  .workstrip::-webkit-scrollbar{display:none}
+  .workstrip-scroller::-webkit-scrollbar{display:none}
   /* the CSS animation would fight the scrollLeft the script is setting */
   .workstrip-track{animation:none;width:max-content}
   .workstrip-track img{height:190px;cursor:pointer}
