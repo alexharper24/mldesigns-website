@@ -107,15 +107,15 @@ section{padding:4.2rem 0}
 
 /* Value cards & icons */
 /* Once the white cards went, this section had no edges and ran straight into
-   the ones above and below it. Rules at content width give it a boundary,
-   matching the dividers inside it, without a slab of colour across the page. */
-.band-soft{padding-block:1.2rem}
-.band-soft > .wrap{border-block:1px solid var(--cream-deep);padding-block:3.2rem}
+   the ones above and below it. A full-bleed tint gives it a clear boundary.
+   Green mist rather than cream deep: the tan sits so close to the page that it
+   read as muddy, where the cooler tone registers as a deliberate band. */
+.band-soft{background:var(--green-mist);padding-block:3.8rem}
 .vals{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:2.2rem}
 /* Columns separated by a hairline rather than boxed as cards, so the four read
    as one row of promises. The icon sits plain, at the weight of the rules
    around it, instead of in a filled tile. */
-.val{padding:0 1.6rem;border-left:1px solid var(--cream-deep)}
+.val{padding:0 1.6rem;border-left:1px solid #dbe4d5}
 .val:first-child{padding-left:0;border-left:0}
 .val .icon-tile{width:26px;height:26px;border-radius:0;background:none;
   color:var(--brown);margin-bottom:.85rem}
@@ -354,6 +354,7 @@ footer a{color:var(--green-soft);font-size:.95rem}
 }
 @media(max-width:640px){
   section{padding:3rem 0}
+  .band-soft{padding-block:2.8rem}
   input,select,textarea,.btn{min-height:44px}
   .trust .wrap{grid-template-columns:1fr 1fr;gap:1.2rem}
   .gallery{columns:2;column-gap:.7rem}
