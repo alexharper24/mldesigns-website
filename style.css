@@ -48,7 +48,7 @@ section{padding:4.2rem 0}
 /* line-art mark is lighter than the old badge, so it runs a little larger */
 .brand .mark{width:auto;height:54px}
 .brand .name{font-family:var(--serif);font-weight:700;font-size:1.18rem;color:var(--green);line-height:1.15;display:flex;flex-direction:column}
-.brand .name span{font-family:var(--sans);font-weight:600;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--brown)}
+.brand .name span{font-family:var(--sans);font-weight:600;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--brown)}
 .nav-links{display:flex;align-items:center;gap:1.7rem}
 .nav-links a{font-weight:500;color:var(--ink);font-size:1rem}
 .nav-links a.active{color:var(--green);font-weight:600}
@@ -198,6 +198,18 @@ section{padding:4.2rem 0}
 .lb{position:fixed;inset:0;background:rgba(20,26,19,.88);display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;padding:2rem}
 .lb.open{opacity:1;visibility:visible}
 .lb img{max-width:92vw;max-height:88vh;border-radius:10px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(20,26,19,.55);border:0;color:var(--cream);font-size:2rem;line-height:1;cursor:pointer;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.lb-prev{left:.6rem}
+.lb-next{right:.6rem}
+@media (hover:hover){.lb-nav:hover{background:rgba(20,26,19,.85)}}
+.lb-cap{position:absolute;left:0;right:0;bottom:1.1rem;text-align:center;color:var(--cream);font-size:.92rem;padding:0 4.5rem;text-wrap:balance}
+.lb-count{position:absolute;top:1.5rem;left:1.5rem;color:var(--cream);font-size:.85rem;letter-spacing:.06em;opacity:.75}
+@media(max-width:640px){
+  .lb{padding:1rem}
+  .lb img{max-width:96vw;max-height:74vh}
+  .lb-nav{width:48px;height:48px;font-size:1.7rem}
+  .lb-cap{bottom:.7rem;padding:0 3.6rem;font-size:.86rem}
+}
 .lb-close{position:absolute;top:1.2rem;right:1.5rem;background:none;border:0;color:var(--cream);font-size:2.2rem;cursor:pointer;line-height:1;width:48px;height:48px;display:flex;align-items:center;justify-content:center}
 
 /* Quote page */
@@ -271,8 +283,10 @@ footer a{color:var(--green-soft);font-size:.95rem}
     z-index:70;overflow-y:auto;
   }
   .nav-links.open{transform:none}
+  .nav-links a{display:flex;align-items:center;width:100%;min-height:44px}
+  .nav-links{gap:.35rem}
   .nav-links .nav-cta{width:100%;justify-content:center;margin-top:.5rem}
-  .nav-toggle{display:block;position:relative;z-index:80}
+  .nav-toggle{display:block;position:relative;z-index:80;flex:none}
   .nav-toggle.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
   .nav-toggle.active span:nth-child(2){opacity:0}
   .nav-toggle.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
@@ -282,13 +296,15 @@ footer a{color:var(--green-soft);font-size:.95rem}
 }
 @media(max-width:640px){
   section{padding:3rem 0}
+  input,select,textarea,.btn{min-height:44px}
   .trust .wrap{grid-template-columns:1fr 1fr;gap:1.2rem}
-  .gallery{columns:1}
+  .gallery{columns:2;column-gap:.7rem}
+  .g-item{margin-bottom:.7rem}
   .feat{grid-template-columns:1fr}
   .hero{padding:3rem 0}
   footer .wrap{grid-template-columns:1fr}
   /* gallery filter chips were 35px tall - too small for a thumb */
-  .filters button{padding:.72rem 1.15rem}
+  .filters button{padding:.72rem 1.15rem;min-height:44px}
   /* footer sitemap links sat 19px tall with 7px between them - easy to mis-tap */
   footer li{margin-bottom:0}
   footer li a{display:inline-block;padding:.55rem 0}
@@ -364,4 +380,31 @@ footer a{color:var(--green-soft);font-size:.95rem}
    -------------------------------------------------------------------------- */
 @media (max-width: 640px) {
   footer .wrap a { padding-top: 11px; padding-bottom: 11px; }
+}
+
+/* ===== Light-mode lock =====
+   The two <meta> tags and `color-scheme: light only` handle most browsers.
+   iOS Safari still auto-inverts without an explicit dark-scheme override,
+   which turned this cream palette into unreadable dark-on-dark. */
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: light only !important;
+    --green:#213c26; --green-mid:#2f5236; --green-soft:#dfe8dd; --green-mist:#eef3ea;
+    --cream:#faf5e9; --cream-deep:#f1ead8; --white:#fff;
+    --brown:#6d3f1e; --brown-soft:#a9743f;
+    --ink:#22271f; --ink-soft:#5c6255;
+  }
+  html,body{background:var(--cream);color:var(--ink)}
+  input,select,textarea{background:var(--white);color:var(--ink)}
+}
+
+/* ===== Print ===== */
+@media print{
+  .nav,.nav-toggle,.nav-overlay,.filters,.lb,.cta-band,.workstrip{display:none !important}
+  body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;word-break:break-all}
+  .gallery{columns:2}
+  .g-item,figure,section{break-inside:avoid}
+  footer{border-top:1px solid #999;padding-top:1rem}
 }
