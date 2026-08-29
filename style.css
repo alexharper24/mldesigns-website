@@ -48,7 +48,7 @@ section{padding:4.2rem 0}
 /* line-art mark is lighter than the old badge, so it runs a little larger */
 .brand .mark{width:auto;height:54px}
 .brand .name{font-family:var(--serif);font-weight:700;font-size:1.18rem;color:var(--green);line-height:1.15;display:flex;flex-direction:column}
-.brand .name span{font-family:var(--sans);font-weight:600;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--brown)}
+.brand .name span{font-family:var(--sans);font-weight:600;font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--brown)}
 .nav-links{display:flex;align-items:center;gap:1.7rem}
 .nav-links a{font-weight:500;color:var(--ink);font-size:1rem}
 .nav-links a.active{color:var(--green);font-weight:600}
@@ -99,7 +99,10 @@ section{padding:4.2rem 0}
 .split.centered{max-width:1040px;margin-inline:auto;grid-template-columns:minmax(0,1fr) auto}
 .split .photo{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
 .split .photo.portrait img{aspect-ratio:1/1;object-fit:cover;object-position:50% 22%}
-.badge-side img{max-width:340px;margin-inline:auto}
+/* 340px is wider than the content band on a 320px phone, and because the badge
+   sits in a grid column it dragged the whole stacked .split out to 340, taking
+   the page to 350 and causing a horizontal scroll */
+.badge-side img{max-width:min(340px,100%);margin-inline:auto}
 
 /* Value cards & icons */
 .vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.3rem;margin-top:2.2rem}
@@ -166,10 +169,20 @@ section{padding:4.2rem 0}
     -webkit-mask-image:none;mask-image:none}
 }
 @media(max-width:640px){
-  .heroPhoto{padding:2.4rem 0 2.8rem}
-  .heroPhoto .wrap{gap:1.9rem}
+  /* The copy block ran 146px to 621px and pushed the photo to 651, so the first
+     screen was a wall of text with 61% of the photo cut off below the fold. The
+     hero is the same height as the phone, so everything below just needs to give
+     back a little: tighter padding, one row of buttons instead of two, and less
+     air around the trust line. That lands the whole hero, photo included, inside
+     an iPhone screen. */
+  .heroPhoto{padding:1.6rem 0 2.2rem}
+  .heroPhoto .wrap{gap:1.3rem}
   .heroPhoto .hero-photo{height:auto;aspect-ratio:4/3}
-  .hero-ctas .btn{flex:1 1 auto}
+  .hero-ctas{margin-top:1.2rem}
+  /* 1.7rem of side padding made the pair 362px wide in a 343px row, so they
+     wrapped and cost an extra 65px of height for nothing */
+  .hero-ctas .btn{flex:1 1 auto;padding-inline:1.05rem}
+  .hero-trust{margin-top:1.2rem}
 }
 
 /* Services page */
@@ -219,10 +232,11 @@ section{padding:4.2rem 0}
 
 /* Quote page */
 .quote-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:start}
+.quote-grid>*{min-width:0}
 .form-card{background:var(--white);border:1px solid var(--cream-deep);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow-sm)}
 .form-card label{display:block;font-weight:600;font-size:.92rem;margin:1.1rem 0 .35rem;color:var(--ink)}
 .form-card label:first-of-type{margin-top:0}
-.form-card input,.form-card select,.form-card textarea{width:100%;font-family:var(--sans);font-size:1rem;padding:.7rem .9rem;border:1.5px solid var(--cream-deep);border-radius:9px;background:var(--cream);color:var(--ink)}
+.form-card input,.form-card select,.form-card textarea{width:100%;min-width:0;max-width:100%;font-family:var(--sans);font-size:1rem;padding:.7rem .9rem;border:1.5px solid var(--cream-deep);border-radius:9px;background:var(--cream);color:var(--ink)}
 .form-card input:focus,.form-card select:focus,.form-card textarea:focus{outline:2px solid var(--green-mid);border-color:var(--green-mid)}
 .form-card textarea{min-height:130px;resize:vertical}
 .form-card .btn{margin-top:1.4rem;width:100%}
@@ -234,6 +248,8 @@ section{padding:4.2rem 0}
 .side-card{background:var(--white);border:1px solid var(--cream-deep);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow-sm);margin-bottom:1.4rem}
 .c-row{display:flex;gap:.9rem;align-items:flex-start;margin-bottom:1rem}
 .c-row:last-child{margin-bottom:0}
+.c-row>div{min-width:0}
+.c-row a{overflow-wrap:anywhere}
 .c-row .icon-tile{width:40px;height:40px;flex-shrink:0;margin:0}
 .c-row .icon-tile svg{width:20px;height:20px}
 .c-row b{display:block;font-size:.95rem}
@@ -253,13 +269,14 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto auto;
 footer .fbrand{display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem}
 footer .fbrand img{width:auto;height:58px}
 footer .fbrand b{font-family:var(--serif);color:var(--cream);font-size:1.15rem;line-height:1.2;display:block}
-footer .fbrand span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#be976f}
+footer .fbrand span{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:#be976f}
 footer p{color:var(--green-soft);font-size:.92rem}
 footer h3, footer h4{font-family:var(--serif);color:var(--cream);margin-bottom:.8rem;font-size:1.05rem}
 footer ul{list-style:none}
 footer li{margin-bottom:.45rem}
 footer a{color:var(--green-soft);font-size:.95rem}
 @media (hover:hover){footer a:hover{color:var(--cream)}}
+@media(max-width:640px){.copy a{display:inline-block;padding:.35rem 0}}
 /* .copy also carries .wrap, so it must opt out of the footer grid */
 .copy.wrap{display:block}
 .copy{border-top:1px solid rgba(250,245,233,.15);margin-top:2.4rem;padding-top:1.4rem;text-align:center;font-size:.85rem;color:var(--green-soft);line-height:1.6}
@@ -276,6 +293,11 @@ footer a{color:var(--green-soft);font-size:.95rem}
      a phone. The centered split collapsed its text to 0px and overflowed. */
   .hero .wrap,.split,.split.centered,.svc .wrap,.svc.flip .wrap,.quote-grid{grid-template-columns:1fr}
   .svc.flip .wrap>.photo{order:0}
+  .filters button{padding:.72rem 1.15rem;min-height:44px}
+  input,select,textarea,.btn{min-height:44px}
+  footer li{margin-bottom:0}
+  footer li a{display:inline-flex;align-items:center;min-height:44px}
+  .copy a{display:inline-flex;align-items:center;min-height:44px}
   .feat{grid-template-columns:1fr 1fr}
   .gallery{columns:2}
   .steps{grid-template-columns:repeat(2,1fr);row-gap:1.8rem}
@@ -316,7 +338,7 @@ footer a{color:var(--green-soft);font-size:.95rem}
   .filters button{padding:.72rem 1.15rem;min-height:44px}
   /* footer sitemap links sat 19px tall with 7px between them - easy to mis-tap */
   footer li{margin-bottom:0}
-  footer li a{display:inline-block;padding:.55rem 0}
+  footer li a{display:inline-flex;align-items:center;min-height:44px}
 }
 
 /* ===== Hero variants (previews) ===== */
@@ -350,6 +372,22 @@ footer a{color:var(--green-soft);font-size:.95rem}
 @keyframes strip{to{transform:translateX(-50%)}}
 @media (hover:hover){.workstrip:hover .workstrip-track{animation-play-state:paused}}
 @media (prefers-reduced-motion:reduce){.workstrip-track{animation:none;flex-wrap:wrap;width:auto}}
+/* The strip auto-scrolls on a pointer device, where hovering pauses it. A
+   phone can do neither: overflow:hidden blocks the swipe, the pause rule is
+   behind (hover:hover), and every photo is a moving tap target. Below 960 it
+   becomes an ordinary swipeable rail instead. */
+@media(max-width:960px){
+  .workstrip{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;scrollbar-width:none;
+    padding-inline:max(3%,calc((100% - var(--maxw))/2))}
+  .workstrip::-webkit-scrollbar{display:none}
+  .workstrip-track{animation:none;width:max-content}
+  .workstrip-track img{height:190px;scroll-snap-align:start;cursor:pointer}
+  /* the second run of photos only exists to make the desktop loop seamless;
+     swiping through the same ten twice just looks like a mistake */
+  .workstrip-track img[alt=""]{display:none}
+  .workstrip-label{padding-inline:0}
+}
 
 /* C: brand band + overlapping strip */
 .heroC{background:var(--green);padding:4.2rem 0 6.5rem}
@@ -390,6 +428,45 @@ footer a{color:var(--green-soft);font-size:.95rem}
 @media (max-width: 640px) {
   footer .wrap a { padding-top: 11px; padding-bottom: 11px; }
 }
+
+/* ===== Let's Chat launcher =====
+   Ported from Bless Your Paws along with the three mobile fixes that site
+   learned the hard way: icon only on a phone (the labelled pill measured 38%
+   of the screen), hidden while the nav drawer is open (it sat on top of the
+   overlay), and page padding so it never comes to rest on the last line. */
+.chat-fab{position:fixed;right:18px;bottom:18px;z-index:70;display:inline-flex;
+  align-items:center;gap:.5rem;background:var(--green);color:var(--cream);
+  border:none;border-radius:999px;padding:.8rem 1.25rem;font-family:var(--sans);
+  font-weight:600;font-size:.98rem;cursor:pointer;min-height:48px;
+  box-shadow:0 6px 18px rgba(34,39,31,.32)}
+@media (hover:hover){.chat-fab:hover{background:var(--green-mid)}}
+.chat-fab svg{width:19px;height:19px;flex:0 0 auto}
+.chat-panel{position:fixed;right:18px;bottom:82px;z-index:70;display:none;
+  width:min(92vw,21rem);background:var(--white);border:1.5px solid var(--green);
+  border-radius:12px;padding:1.35rem;box-shadow:0 14px 36px rgba(34,39,31,.26)}
+.chat-panel.open{display:block}
+.chat-panel h3{font-family:var(--serif);color:var(--green);font-size:1.2rem;margin-bottom:.35rem}
+.chat-panel p{font-size:.92rem;margin-bottom:1rem;max-width:none}
+.chat-panel .row{display:flex;gap:.8rem;align-items:baseline;padding:.6rem 0;
+  border-top:1px solid var(--cream-deep)}
+.chat-panel .row .lbl{font-size:.7rem;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--brown);min-width:4.4rem;flex:0 0 auto}
+.chat-panel .row a{font-weight:600;color:var(--green);overflow-wrap:anywhere}
+.chat-panel .row span{color:var(--ink-soft);font-size:.94rem}
+.chat-close{position:absolute;top:.4rem;right:.4rem;width:44px;height:44px;
+  background:none;border:0;color:var(--ink-soft);font-size:1.5rem;line-height:1;cursor:pointer}
+@media(max-width:640px){
+  /* a labelled pill ate a third of the screen and covered real content */
+  .chat-fab{right:12px;bottom:12px;padding:0;width:54px;height:54px;
+    border-radius:50%;justify-content:center;gap:0}
+  .chat-fab .fab-label{display:none}
+  .chat-panel{right:12px;left:12px;bottom:76px;width:auto}
+  /* z-index 70 would otherwise float it over the open nav drawer */
+  body.nav-open .chat-fab,body.nav-open .chat-panel{display:none}
+  /* and it must not come to rest on top of the last line of the page */
+  footer{padding-bottom:5rem}
+}
+@media print{.chat-fab,.chat-panel{display:none !important}}
 
 /* ===== Light-mode lock =====
    The two <meta> tags and `color-scheme: light only` handle most browsers.

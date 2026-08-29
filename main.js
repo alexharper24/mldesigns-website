@@ -14,6 +14,8 @@ if (toggle && links) {
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     document.body.style.overflow = open ? 'hidden' : '';
+    // lets the chat launcher get out of the way of the drawer
+    document.body.classList.toggle('nav-open', open);
   };
   toggle.addEventListener('click', () => setMenu(!links.classList.contains('open')));
   overlay.addEventListener('click', () => setMenu(false));
@@ -183,6 +185,57 @@ if (form) {
     } finally {
       btn.disabled = false; btn.textContent = 'Send Quote Request';
     }
+  });
+}
+
+// Let's Chat launcher.
+// Skipped on the quote page, which already carries the form this would point at,
+// and where a fixed button lands squarely on top of a field.
+if (!document.getElementById('quoteForm')) {
+  const fab = document.createElement('button');
+  fab.className = 'chat-fab';
+  fab.type = 'button';
+  fab.setAttribute('aria-expanded', 'false');
+  fab.setAttribute('aria-controls', 'chatPanel');
+  fab.setAttribute('aria-label', 'Get in touch');
+  fab.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 ' +
+    '8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 ' +
+    '1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>' +
+    '<span class="fab-label">Let\u2019s Chat</span>';
+
+  const panel = document.createElement('div');
+  panel.className = 'chat-panel';
+  panel.id = 'chatPanel';
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-label', 'Get in touch with ML Designs');
+  // REPLACE THIS: the phone and email rows go live once Matt supplies them.
+  // Tracked in README.md. Until then the form is the only real channel, so it
+  // leads rather than sitting under a dead phone number.
+  panel.innerHTML =
+      '<button class="chat-close" type="button" aria-label="Close">&times;</button>'
+    + '<h3>Tell us about the project</h3>'
+    + '<p>Send a few details and Matt will get back to you within a couple of business days.</p>'
+    + '<div class="row"><span class="lbl">Quote</span><a href="quote.html">Start a quote request</a></div>'
+    + '<div class="row"><span class="lbl">Phone</span><span>Coming soon</span></div>'
+    + '<div class="row"><span class="lbl">Email</span><span>Coming soon</span></div>'
+    + '<div class="row"><span class="lbl">Social</span><a href="https://www.instagram.com/ml_designs_const_woodworking/" target="_blank" rel="noopener">Instagram</a></div>'
+    + '<div class="row"><span class="lbl">Area</span><span>St. John, plus Lake and Porter counties</span></div>';
+
+  document.body.appendChild(panel);
+  document.body.appendChild(fab);
+
+  const setChat = (open) => {
+    panel.classList.toggle('open', open);
+    fab.setAttribute('aria-expanded', String(open));
+    if (open) panel.querySelector('.chat-close').focus(); else fab.focus();
+  };
+  fab.addEventListener('click', () => setChat(!panel.classList.contains('open')));
+  panel.querySelector('.chat-close').addEventListener('click', () => setChat(false));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && panel.classList.contains('open')) setChat(false); });
+  // tapping the page behind it should dismiss, the way the nav drawer does
+  document.addEventListener('click', e => {
+    if (panel.classList.contains('open') && !panel.contains(e.target) && !fab.contains(e.target)) setChat(false);
   });
 }
 

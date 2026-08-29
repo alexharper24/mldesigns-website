@@ -15,12 +15,25 @@ Live preview: https://alexharper24.github.io/mldesigns-website/
 
 | Item | Where | Status |
 |---|---|---|
-| Phone number | quote.html sidebar, all footers | "Coming soon" |
-| Email address | quote.html sidebar, all footers | "Coming soon" |
+| Phone number | quote.html sidebar, all footers, **Let's Chat panel in `main.js`** | "Coming soon" |
+| Email address | quote.html sidebar, all footers, **Let's Chat panel in `main.js`** | "Coming soon" |
 | Formspree form ID | `quote.html` form action (`YOUR_FORM_ID`) | Create a form at formspree.io and paste the ID. Until then the JS shows a friendly fallback message, so the form never silently fails. First real submission triggers a Formspree confirmation email; free tier is 50 submissions/month. |
 | Custom domain | GitHub Pages settings + DNS | Point `mldesignscw.com` at GitHub Pages (see Publishing below) |
 | Basement photos | `services.html#basements`, home basement card | Both currently use `framing-basement-framing.jpg`. Two photos once labelled "basement" could not be verified as basements and were renamed (`interior-great-room-barn-door`, `interior-open-living-dining`). Swap a finished basement photo in once Matt confirms which projects were basements. |
 | Before / after feature | not built | Six web-ready before photos sit unused in `img/work/before/`. Matt to confirm which befores pair with which afters. If built: badge on qualifying tiles plus a Before/After toggle inside the lightbox — not a drag slider, since the angles do not align. |
+
+## Let's Chat launcher
+
+A floating button on every page except `quote.html`, which already carries the
+form it points at. Built in `main.js` rather than in the markup so all five
+pages get it from one place. Ported from `blessyourpaws-website-repo` along with
+its three mobile fixes: icon only below 640 (the labelled pill measured a third
+of the screen), hidden while the nav drawer is open, and extra footer padding so
+it never rests on the last line.
+
+The phone and email rows currently read "Coming soon" and are marked
+`REPLACE THIS` in `main.js`. Fill them in the same pass as the footer and the
+quote sidebar.
 
 ## Image folders
 
