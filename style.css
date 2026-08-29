@@ -6,7 +6,7 @@
   --cream:#faf5e9; --cream-deep:#f1ead8; --white:#fff;
   --brown:#6d3f1e; --brown-soft:#a9743f;
   --ink:#22271f; --ink-soft:#5c6255;
-  --maxw:1180px; --radius:14px;
+  --maxw:1560px; --radius:14px;
   --shadow:0 20px 50px -24px rgba(34,39,31,.45);
   --shadow-sm:0 8px 24px -14px rgba(34,39,31,.35);
   --serif:'Bitter',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
@@ -16,15 +16,15 @@ html{scroll-behavior:smooth}
 body{font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.65;font-size:1.02rem}
 img{max-width:100%;display:block;height:auto}
 a{color:var(--green);text-decoration:none}
-.wrap{width:min(92%,var(--maxw));margin-inline:auto}
+.wrap{width:min(94%,var(--maxw));margin-inline:auto}
 h1,h2,h3{font-family:var(--serif);color:var(--green);line-height:1.2;font-weight:600}
 h1{font-size:clamp(2.1rem,4.6vw,3.3rem)}
 h2{font-size:clamp(1.6rem,3vw,2.2rem)}
 h3{font-size:1.18rem}
-p{color:var(--ink-soft)}
+p{color:var(--ink-soft);max-width:56ch}
 section{padding:4.2rem 0}
 .eyebrow{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brown);margin-bottom:.9rem}
-.lead{font-size:1.12rem;max-width:62ch}
+.lead{font-size:1.12rem;max-width:56ch}
 
 /* Buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-family:var(--sans);font-weight:600;font-size:1rem;padding:.85rem 1.7rem;border-radius:10px;border:2px solid transparent;cursor:pointer;transition:background .2s,color .2s,transform .2s,border-color .2s}
@@ -154,10 +154,10 @@ section{padding:4.2rem 0}
 @media(max-width:960px){
   /* stack: copy above, photo below, both back inside the normal band */
   .heroPhoto{padding:3.2rem 0 3.4rem}
-  .heroPhoto .wrap{width:min(92%,var(--maxw));margin-inline:auto;
+  .heroPhoto .wrap{width:min(94%,var(--maxw));margin-inline:auto;
     padding-left:0;padding-right:0;grid-template-columns:1fr;gap:2.4rem}
   .heroPhoto .hero-content{max-width:none}
-  .heroPhoto .hero-content .lead{max-width:60ch}
+  .heroPhoto .hero-content .lead{max-width:56ch}
   /* stacked and centred in the band, so a one-sided fade would look lopsided */
   .heroPhoto .hero-photo{height:auto;aspect-ratio:16/10;
     -webkit-mask-image:none;mask-image:none}
@@ -190,6 +190,7 @@ section{padding:4.2rem 0}
 .filters button.active{background:var(--green);color:var(--cream)}
 @media (hover:hover){.filters button:hover{background:var(--green);color:var(--cream)}}
 .gallery{columns:3;column-gap:1rem}
+@media(min-width:1500px){.gallery{columns:4}}
 .g-item{break-inside:avoid;margin:0 0 1rem;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);cursor:zoom-in}
 .g-item img{width:100%;transition:transform .35s}
 @media (hover:hover){.g-item:hover img{transform:scale(1.03)}}
