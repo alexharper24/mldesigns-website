@@ -96,13 +96,14 @@ section{padding:4.2rem 0}
 /* About teaser / split rows */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
 /* for a split whose content is much narrower than the band */
-.split.centered{max-width:1040px;margin-inline:auto;grid-template-columns:minmax(0,1fr) auto}
+.split.centered{max-width:1040px;margin-inline:auto;
+  grid-template-columns:minmax(0,1fr) minmax(0,340px)}
 .split .photo{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
 .split .photo.portrait img{aspect-ratio:1/1;object-fit:cover;object-position:50% 22%}
-/* 340px is wider than the content band on a 320px phone, and because the badge
-   sits in a grid column it dragged the whole stacked .split out to 340, taking
-   the page to 350 and causing a horizontal scroll */
-.badge-side img{max-width:min(340px,100%);margin-inline:auto}
+/* width:100% rather than a percentage max-width: it fills the track it is given
+   and shrinks on a 320px phone, without putting a percentage anywhere the grid
+   has to resolve during intrinsic sizing */
+.badge-side img{width:100%;max-width:340px;height:auto;margin-inline:auto}
 
 /* Value cards & icons */
 .vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.3rem;margin-top:2.2rem}
@@ -379,14 +380,21 @@ footer a{color:var(--green-soft);font-size:.95rem}
    scrollLeft instead, which keeps the motion while letting a thumb grab it.
    The duplicate run of photos stays, because the loop needs it. */
 @media(max-width:960px){
-  .workstrip{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+  .workstrip{overflow-x:auto;overflow-y:hidden;
     scrollbar-width:none;padding-inline:max(3%,calc((100% - var(--maxw))/2))}
   .workstrip::-webkit-scrollbar{display:none}
   /* the CSS animation would fight the scrollLeft the script is setting */
   .workstrip-track{animation:none;width:max-content}
   .workstrip-track img{height:190px;cursor:pointer}
   .workstrip-label{padding-inline:0}
+  /* The stacked hero put a wall of copy in front of the photo and pushed it
+     under the fold. On a phone the hero is text only and the shot leads the
+     Recent Work strip instead, where it is the first thing that moves. */
+  .heroPhoto .hero-photo{display:none}
+  .heroPhoto .wrap{gap:0}
 }
+/* the strip does not carry the hero shot on desktop, where the hero still does */
+@media(min-width:961px){.workstrip-track img.ws-hero{display:none}}
 
 /* C: brand band + overlapping strip */
 .heroC{background:var(--green);padding:4.2rem 0 6.5rem}

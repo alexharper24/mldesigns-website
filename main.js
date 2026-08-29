@@ -59,22 +59,34 @@ if (strip && stripTrack && stripMQ.matches) {
   const RESUME_AFTER = 2200;     // let go, read for a moment, then it drifts on
 
   let last = 0, paused = false, held = false, resumeAt = 0, onScreen = true;
-  // The track is the ten photos twice over, so one run ends where the eleventh
-  // begins. Measured off the images rather than halving scrollWidth, because
-  // the container's own padding is in that number and left the reset 3px short,
-  // which is a small visible jump on every lap.
-  const shots = stripTrack.querySelectorAll('img');
-  const runWidth = () => (shots.length > 10 ? shots[10].offsetLeft - shots[0].offsetLeft : 0);
+  // Position is kept here as a float and assigned, never read back off the
+  // element and added to. At 38px a second a frame moves about 0.6px, and
+  // Safari rounds scrollLeft to whole pixels on read, so `scrollLeft +=` threw
+  // the fraction away every frame and the strip sat still on iOS.
+  let pos = 0;
+  // The track is the photos twice over, so one run ends where the second copy
+  // of the first photo begins. Measured off the images rather than halving
+  // scrollWidth, because the container's own padding is inside that number and
+  // left the reset 3px short, a small jump on every lap. Hidden images are
+  // skipped, since the hero shot only joins the strip below 960.
+  const onStrip = () => [].slice.call(stripTrack.querySelectorAll('img'))
+                          .filter(i => i.offsetParent !== null);
+  const runWidth = () => {
+    const v = onStrip(), half = v.length >> 1;
+    return half > 0 ? v[half].offsetLeft - v[0].offsetLeft : 0;
+  };
 
   const tick = (now) => {
     const dt = last ? (now - last) / 1000 : 0;
     last = now;
     if (!stripMQ.matches) { strip.scrollLeft = 0; requestAnimationFrame(tick); return; }
     if (!paused && !held && onScreen && !reduced.matches && dt > 0 && dt < 0.5) {
-      strip.scrollLeft += SPEED * dt;
+      const run = runWidth();
+      pos += SPEED * dt;
       // hand back to the start of the first run before the second one ends,
       // which is invisible because the two runs are identical
-      if (strip.scrollLeft >= runWidth()) strip.scrollLeft -= runWidth();
+      if (run > 0 && pos >= run) pos -= run;
+      strip.scrollLeft = pos;
     }
     if (resumeAt && now >= resumeAt) { held = false; resumeAt = 0; }
     requestAnimationFrame(tick);
@@ -82,7 +94,9 @@ if (strip && stripTrack && stripMQ.matches) {
   requestAnimationFrame(tick);
 
   const hold = () => { held = true; resumeAt = 0; };
-  const release = () => { resumeAt = performance.now() + RESUME_AFTER; };
+  const release = () => { pos = strip.scrollLeft; resumeAt = performance.now() + RESUME_AFTER; };
+  // covers a dragged scrollbar and momentum still settling after a flick
+  strip.addEventListener('scroll', () => { if (held) pos = strip.scrollLeft; }, {passive: true});
   strip.addEventListener('touchstart', hold, {passive: true});
   strip.addEventListener('touchend', release, {passive: true});
   strip.addEventListener('touchcancel', release, {passive: true});
