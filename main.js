@@ -307,3 +307,74 @@ if (!document.getElementById('quoteForm')) {
 
 // Footer year
 document.querySelectorAll('.yr').forEach(el => el.textContent = new Date().getFullYear());
+
+
+/* ---------- footer columns fold on a phone ----------
+   At 390px wide the footer ran 955px. The Site column folds behind its own
+   heading below 640px, which is where footer .wrap already collapses to one
+   column.
+
+   ONLY Site folds. Contact is where the phone and email land when the client
+   supplies them (the column currently reads "Phone and email coming soon"), and
+   contact details do not belong behind a tap.
+   The toggle and the panel are BUILT HERE rather than written into the pages,
+   which carry only class="footer-col" to say which columns fold. The heading
+   text is then written once, so renaming a column cannot leave the phone and the
+   desktop disagreeing, and a footer whose script never loaded keeps plain
+   headings with every link visible, because the elements that do the folding
+   never come into being. Hiding links behind a control that cannot open them is
+   the one failure this pattern must not have.
+
+   Everything after the heading is moved into the panel, not cloned, so this
+   block is identical on every site whether the links sit in a <ul> or as bare
+   <a>, and any listener already bound to a footer link survives. */
+(function () {
+  var cols = document.querySelectorAll('.footer-col');
+  var foot = document.querySelector('footer');
+  if (!cols.length || !foot) return;
+
+  var CHEVRON = '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"' +
+    ' focusable="false"><path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor"' +
+    ' stroke-width="1.8" stroke-linecap="square"></path></svg>';
+
+  Array.prototype.forEach.call(cols, function (col) {
+    var heading = col.querySelector('h3, h4');
+    if (!heading) return;
+
+    var label = heading.textContent.trim();
+    if (!label) return;
+    var id = 'footer-' + label.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+    var panel = document.createElement('div');
+    panel.className = 'footer-col-panel';
+    panel.id = id;
+    var clip = document.createElement('div');
+    var node = heading.nextSibling;
+    while (node) { var next = node.nextSibling; clip.appendChild(node); node = next; }
+    panel.appendChild(clip);
+    col.appendChild(panel);
+
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'footer-col-toggle';
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-controls', id);
+    button.appendChild(document.createTextNode(label));
+    button.insertAdjacentHTML('beforeend', CHEVRON);
+
+    var text = document.createElement('span');
+    text.className = 'footer-col-label';
+    text.textContent = label;
+    heading.textContent = '';
+    heading.appendChild(text);
+    heading.appendChild(button);
+
+    button.addEventListener('click', function () {
+      var open = !col.classList.contains('open');
+      col.classList.toggle('open', open);
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  foot.classList.add('footer-accordion-ready');
+})();

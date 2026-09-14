@@ -553,3 +553,56 @@ footer a{color:var(--green-soft);font-size:.95rem}
 a:focus-visible,button:focus-visible,input:focus-visible,
 textarea:focus-visible,select:focus-visible,summary:focus-visible,
 [tabindex]:focus-visible{outline:3px solid currentColor;outline-offset:2px}
+
+/* --------------------------------------------------------------------------
+   Footer column folds on a phone (2026-09-14).
+   Measured at 390px wide, the footer ran 955px. The Site column folds behind its
+   own heading, bringing it to about 735px.
+
+   The breakpoint is 640px because that is where footer .wrap already collapses
+   to one column, so the fold is scoped to the widths where the footer is a
+   single stack.
+
+   ONLY Site folds. Contact is where the phone and email land once the client
+   supplies them, and contact details do not belong behind a tap. The grid gap is
+   kept rather than zeroed: one folded row between two open blocks is a divider,
+   not a list.
+   Scoped to .footer-accordion-ready, a class main.js adds at run time rather
+   than one written into the pages, so a footer whose script never loaded
+   renders exactly as it did before: every link visible, every toggle hidden.
+
+   Closed panels set visibility:hidden as well as a zero grid row. The zero row
+   collapses the height; visibility is what takes the links out of the tab order
+   and out of the way of taps, the way display:none used to.
+   -------------------------------------------------------------------------- */
+.footer-col-toggle{display:none}
+
+@media (max-width:640px){
+  .footer-accordion-ready .footer-col h3,
+  .footer-accordion-ready .footer-col h4{margin-bottom:0}
+  .footer-accordion-ready .footer-col-label{display:none}
+  .footer-accordion-ready .footer-col-toggle{
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    width:100%;min-height:48px;padding:.7rem 0;
+    background:none;border:0;border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16);
+    text-align:left;cursor:pointer;font-family:var(--serif);font-size:1.05rem;color:var(--cream)}
+  .footer-accordion-ready .footer-col-toggle svg{
+    flex:0 0 auto;transition:transform .24s cubic-bezier(.4,0,.6,1)}
+  .footer-accordion-ready .footer-col.open .footer-col-toggle svg{transform:rotate(180deg)}
+  .footer-accordion-ready .footer-col.open .footer-col-toggle{border-bottom-color:transparent}
+  .footer-accordion-ready .footer-col-panel{
+    display:grid;grid-template-rows:0fr;
+    transition:grid-template-rows .32s cubic-bezier(.4,0,.6,1)}
+  .footer-accordion-ready .footer-col-panel>div{
+    overflow:hidden;min-height:0;visibility:hidden;transition:visibility .32s step-end}
+  .footer-accordion-ready .footer-col.open .footer-col-panel{grid-template-rows:1fr}
+  .footer-accordion-ready .footer-col.open .footer-col-panel>div{
+    visibility:visible;transition:visibility 0s}
+  .footer-accordion-ready .footer-col-panel>div{padding-top:.8rem}
+}
+
+@media (max-width:640px) and (prefers-reduced-motion:reduce){
+  .footer-accordion-ready .footer-col-panel,
+  .footer-accordion-ready .footer-col-panel>div,
+  .footer-accordion-ready .footer-col-toggle svg{transition:none}
+}
