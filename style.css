@@ -598,7 +598,10 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible,
   .footer-accordion-ready .footer-col.open .footer-col-panel{grid-template-rows:1fr}
   .footer-accordion-ready .footer-col.open .footer-col-panel>div{
     visibility:visible;transition:visibility 0s}
-  .footer-accordion-ready .footer-col-panel>div{padding-top:.8rem}
+  /* The breathing room goes on the first child INSIDE the clipped div, not on
+     the div itself. Padding on the clipped element is not collapsed by a 0fr
+     track, so it left a 12.8px sliver under every closed row. */
+  .footer-accordion-ready .footer-col-panel>div>:first-child{margin-top:.8rem}
 }
 
 @media (max-width:640px) and (prefers-reduced-motion:reduce){
