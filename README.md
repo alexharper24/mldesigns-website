@@ -15,6 +15,7 @@ Live preview: https://alexharper24.github.io/mldesigns-website/
 
 | Item | Where | Status |
 |---|---|---|
+| Remove `noindex` at cutover | Every page's `<meta name="robots">` | Added 2026-09-22 so the GitHub Pages review copy is not indexed before launch. The old domain serves only a password-protected Squarespace placeholder, so no legacy redirects are needed. Take it off every page when DNS moves. |
 | Phone number | quote.html sidebar, all footers, **Let's Chat panel in `main.js`** | "Coming soon" |
 | Email address | quote.html sidebar, all footers, **Let's Chat panel in `main.js`** | "Coming soon" |
 | Formspree form ID | `quote.html` form action (`YOUR_FORM_ID`) | Create a form at formspree.io and paste the ID. Until then the JS shows a friendly fallback message, so the form never silently fails. First real submission triggers a Formspree confirmation email; free tier is 50 submissions/month. |
